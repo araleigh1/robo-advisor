@@ -2,16 +2,20 @@ import csv
 import os
 import json
 import datetime
+from dotenv import load_dotenv
+load_dotenv()
 
 import requests
 
 def to_usd(my_price):
     return f"${my_price:,.2f}" #> $12,000.71
 
+
 today = datetime.datetime.now()
 
-
-request_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo"
+api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
+symbol = "PEP"
+request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}" 
 response = requests.get(request_url)
 #print(type(response))
 #print(response.status_code)
