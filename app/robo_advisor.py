@@ -48,7 +48,7 @@ try:
     csv_file_path = os.path.join(os.path.dirname(__file__),"..", "data", "prices.csv")
     csv_headers =["timestamp", "open", "high", "low", "close", "volume"]
 
-    with open(csv_file_path, "w") as csv_file: # "w" means "open the file for writing"
+    with open(csv_file_path, "w", newline="") as csv_file: # "w" means "open the file for writing"
         writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
         writer.writeheader() # uses fieldnames set above
         for date in dates:
@@ -60,6 +60,10 @@ try:
             "low": daily_prices["3. low"],
             "close": daily_prices["4. close"],
             "volume": daily_prices["5. volume"]})
+
+#CSV was oriignally skipping lines.  I found the solution at the link below
+#https://stackoverflow.com/questions/46057470/python-skips-line-when-printing-to-csv
+            
 
     context1 = ((1- (float(recent_low)/float(latest_close)))*100)
     context2 = ((1 - (float(latest_close)/float(recent_high)))*100)
@@ -73,10 +77,10 @@ try:
             recommendation = "HOLD!!"
 
     if float(latest_close) <= 1.15 * recent_low:
-        recomendation_reason = f"{symbol}'s price is within " + str(float(round(context1,2))) + f"% of its lowest price in the last 100 days. Now is a good time to buy {symbol} at a discount!"
+        recomendation_reason = f"{symbol}'s price is within " + str(float(round(context1,2))) + f"% of its lowest price over the last 100 days. Now is a good time to buy {symbol} at a discount!"
     else:    
         if float(latest_close) >= .85 * recent_high:
-            recomendation_reason = f"{symbol}'s price is within " + str(float(round(context2,2))) + f"% of its highest price in the last 100 days. Now would be a good time to sell {symbol} at a profit!"          
+            recomendation_reason = f"{symbol}'s price is within " + str(float(round(context2,2))) + f"% of its highest price over the last 100 days. Now would be a good time to sell {symbol} at a profit!"          
         else:
             recomendation_reason = f"{symbol}'s price is nowhere near the highest or lowest it has been in the last 100 days. You should hold off on buying or selling {symbol} at the moment!"
 #
