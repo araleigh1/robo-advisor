@@ -22,6 +22,7 @@ Steps to setup the robo-advisor python program
 
 (#) except this gitignore file:
 !.gitignore
+
 11) In gitbash, type python app/robo_advisor.py to run the program
 12) Type in a valid NYSE stock sybmol to pull the stock information
 13) Happy trading!
