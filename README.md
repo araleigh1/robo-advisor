@@ -11,16 +11,16 @@ Steps to setup the robo-advisor python program
 7) Go to AlphaAdvantage (https://www.alphavantage.co/) and signup for a unique API code
 8) In the .env file, copy the message ALPHAVANTAGE_API_KEY="" and paste your unique API code within the quotes
 9) In the data folder, create a CSV file called prices.csv
-10) In the data folder, create a .gitignore file and paste the message below
+10) In the data folder, create a .gitignore file and paste the message below and delete the "()" around the hashtags
 
-# data/.gitignore
+(#) data/.gitignore
 
-# h/t: https://stackoverflow.com/a/5581995/670433
+(#) h/t: https://stackoverflow.com/a/5581995/670433
 
-# ignore all files in this directory:
+(#) ignore all files in this directory:
 *
 
-# except this gitignore file:
+(#) except this gitignore file:
 !.gitignore
 11) In gitbash, type python app/robo_advisor.py to run the program
 12) Type in a valid NYSE stock sybmol to pull the stock information
